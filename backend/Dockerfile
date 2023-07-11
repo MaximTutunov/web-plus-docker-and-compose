@@ -8,7 +8,7 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run builder
+RUN npm run build
 
 RUN rm -rf ./src
 
@@ -18,7 +18,7 @@ WORKDIR /app
 
 COPY --from=builder /app/package*.json ./
 
-RUN npm ci --omit==dev && npm i -g pm2
+RUN npm ci --omit=dev && npm i -g pm2
 
 COPY --from=builder /app/dist ./dist/
 
