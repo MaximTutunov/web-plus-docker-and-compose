@@ -10,22 +10,22 @@ import { Wishlist } from './wishlists/entities/wishlist.entity';
 import { AuthModule } from './auth/auth.module';
 
 const {
-  DATABASE_HOST,
-  DATABASE_PORT,
-  DATABASE_USERNAME,
-  DATABASE_PASSWORD,
-  DATABASE_NAME,
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+  POSTGRES_USERNAME,
+  POSTGRES_PASSWORD,
+  POSTGRES_NAME,
 } = process.env;
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: DATABASE_HOST,
-      port: parseInt(DATABASE_PORT),
-      username: DATABASE_USERNAME,
-      password: DATABASE_PASSWORD,
-      database: DATABASE_NAME,
+      host: POSTGRES_HOST,
+      port: parseInt(POSTGRES_PORT),
+      username: POSTGRES_USERNAME,
+      password: POSTGRES_PASSWORD,
+      database: POSTGRES_NAME,
       entities: [User, Offer, Wish, Wishlist],
       synchronize: true,
     }),
