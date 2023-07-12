@@ -1,6 +1,8 @@
 version: '3'
 
 services:
+
+
   backend:
     container_name: 'kupipodariday-backend'
     build:
@@ -9,15 +11,19 @@ services:
     env_file: ./backend/.env
     restart: on-failure
     ports:
-      - '4000:4000'
+      - '4000:3000'
     depends_on:
       - postgres
+    networks:
+      - backend
 
   postgres:
-    container_name: 'kupipodariday-database'
+    container_name: 'kupipodariday'
     image: postgres:12.12-alpine
     restart: on-failure
     env_file: ./backend/.env
+    networks:
+      - backend
 
   frontend:
     container_name: 'kupipodariday-frontend'
@@ -28,3 +34,12 @@ services:
       - '8081:80'
     depends_on:
       - backend
+    networks:
+      - frontend
+
+volumes: 
+    postgres_data:
+
+networks:
+  backend:
+  frontend:

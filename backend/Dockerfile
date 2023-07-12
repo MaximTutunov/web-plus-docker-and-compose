@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:16-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ RUN npm run build
 
 RUN rm -rf ./src
 
-FROM node:18-alpine AS backend
+FROM node:16-alpine AS backend
 
 WORKDIR /app
 
@@ -24,6 +24,6 @@ COPY --from=builder /app/dist ./dist/
 
 COPY ./ecosystem.config.js .
 
-EXPOSE 4000
+EXPOSE 3000
 
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
