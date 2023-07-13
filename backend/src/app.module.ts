@@ -12,9 +12,9 @@ import { AuthModule } from './auth/auth.module';
 const {
   POSTGRES_HOST,
   POSTGRES_PORT,
-  POSTGRES_USERNAME,
+  POSTGRES_USER,
   POSTGRES_PASSWORD,
-  POSTGRES_NAME,
+  POSTGRES_DB,
 } = process.env;
 
 @Module({
@@ -23,9 +23,9 @@ const {
       type: 'postgres',
       host: POSTGRES_HOST,
       port: parseInt(POSTGRES_PORT),
-      username: POSTGRES_USERNAME,
+      username: POSTGRES_USER,
       password: POSTGRES_PASSWORD,
-      database: POSTGRES_NAME,
+      database: POSTGRES_DB,
       entities: [User, Offer, Wish, Wishlist],
       synchronize: true,
     }),
